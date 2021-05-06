@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="content-section-search">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-primary mb-sm-2 text-center font-weight-bold"><p style="color:blue;font-family:verdana;font-size:100px">Search</p></legend>
+                <div class="form-group">
+                    {{ form.product(class="form-control form-control-lg ", placeholder="Enter the product name") }}
+                </div>
+
+                <div class="form-inline">
+                    <div class="form-group col col-md-auto">
+                        <label>Minimum price</label>
+                        {{ form.minimum(class="form-control", placeholder="Minimum price") }}
+                    </div>
+
+                    <div class="form-group col col-md-auto">
+                        <label>Maximum price</label>
+                        {{ form.maximum(class="form-control", placeholder="Maximum price") }}
+                    </div>
+                </div>
+            </fieldset>
+            <div>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="amazon">
+                    <label for="btncheck1">amazon.com</label><br>
+
+                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="tapaz">
+                    <label for="btncheck2">tap.az</label><br>
+
+                    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="aliexpress">
+                    <label for="btncheck3">aliexpress.com</label><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="dropdown">
+                    <label for="sort_pr">Sort by price:</label>
+                    <select name="sort_pr" id="sort_pr" class="dropdown">
+                        <option name="default" value="default">Default</option>
+                        <option name="ascending" value="ascending">Ascending</option>
+                        <option name="descending" value="descending">Descending</option>
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <label for="currency">Currency:</label>
+                    <select name="currency" id="currency" class="dropdown">
+                        <option name="default" value="default">Default</option>
+                        <option name="AZN" value="AZN">AZN</option>
+                        <option name="USD" value="USD">USD</option>
+                        <option name="RUB" value="RUB">RUB</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col col-md-auto">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="column">
+            <h2><p style="font-size:40px; font-weight:bold">Amazon</p></h2>
+            {% for record in all_records['amazon']['product'] %}
+                    <div class="media-body">
+                        <div>
+                            <h4><a class="article-title font-weight-bold" href={{ record['url'] }}>{{ record['description'] }}</a></h4>
+                        </div>
+                        <div>
+                            <h5 class="text-left price-title">Price: {{ record['price_val'] }} {{ record['price_cur'] }}</h5>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <h2><p style="font-size:40px; font-weight:bold">Tapaz</p></h2>
+            {% for record in all_records['tapaz']['product'] %}
+                    <div class="media-body">
+                        <div>
+                            <h4><a class="article-title font-weight-bold" href={{ record['url'] }}>{{ record['description'] }}</a></h4>
+                        </div>
+                        <div>
+                            <h5 class="text-left price-title">Price: {{ record['price_val'] }} {{ record['price_cur'] }}</h5>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <h2><p style="font-size:40px; font-weight:bold">AliExpress</p></h2>
+            {% for record in all_records['aliexpress']['product'] %}
+                    <div class="media-body">
+                        <div>
+                            <h4><a class="article-title font-weight-bold" href={{ record['url'] }}>{{ record['description'] }}</a></h4>
+                        </div>
+                        <div>
+                            <h5 class="text-left price-title">Price: {{ record['price_val'] }} {{ record['price_cur'] }}</h5>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
