@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import time
-from application.scrapers.scraper import Scraper
+from .scraper import Scraper
 
 
 class AmazonScraper(Scraper):

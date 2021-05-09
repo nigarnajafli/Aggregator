@@ -1,6 +1,6 @@
 import abc
-from application.scrapers.driver import Driver
-
+from .driver import Driver
+driver = Driver()
 
 class Scraper(metaclass=abc.ABCMeta):
 	""" Initialize the values to be inherited in TapazScraper, AliExpressScraper, and AmazonScraper."""
@@ -8,7 +8,7 @@ class Scraper(metaclass=abc.ABCMeta):
 		self.search_term = None
 		self.timeout = timeout
 		# Initialize the driver object by using Driver class.
-		self.driver_object = Driver()
+		self.driver_object = driver
 		self.driver = self.driver_object.get_driver()
 
 	def set_search_term(self, product):

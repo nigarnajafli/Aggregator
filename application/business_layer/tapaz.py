@@ -1,6 +1,6 @@
 import time
 from bs4 import BeautifulSoup
-from application.scrapers.scraper import Scraper
+from .scraper import Scraper
 
 
 class TapazScraper(Scraper):

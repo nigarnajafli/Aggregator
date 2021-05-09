@@ -1,20 +1,21 @@
 import requests
 import json
-from application.scrapers.scraper import Scraper
-
+from .scraper import Scraper
+from .json_parser import Parser
+parser = Parser('values.json')
 
 class AliExpressScraper(Scraper):
     # Inherits from scraper.
     def extract_record(self):
         """ Extract the data of search_term from aliexpress.com."""
         records = {'product': []}
-        url = "https://ali-express1.p.rapidapi.com/search"
+        url = parser.get_value("url_for_aliexpress")
 
         querystring = {"query": self.search_term, "page": "1"}
 
         headers = {
-            'x-rapidapi-key': "9acf72976cmshbcd1f0f2fd610b9p16578ajsnadcd91620be1",
-            'x-rapidapi-host': "ali-express1.p.rapidapi.com"
+            'x-rapidapi-key': parser.get_value("x-rapidapi-key"),
+            'x-rapidapi-host': parser.get_value("x-rapidapi-host")
             }
 
         response = requests.request("GET", url, headers=headers, params=querystring)

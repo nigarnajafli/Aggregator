@@ -1,9 +1,9 @@
 from flask import redirect, request, render_template, url_for, flash
 from application import app, db, bcrypt
-from application.forms import RegistrationForm, LoginForm, SearchForm
-from application.models import User
+from .forms import RegistrationForm, LoginForm, SearchForm
+from .models import User
 from flask_login import login_user, current_user, logout_user, login_required
-from application.scrapers.collector import Collector
+from .business_layer.collector import Collector
 
 
 @app.route("/")

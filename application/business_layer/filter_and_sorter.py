@@ -13,17 +13,12 @@ class CurrencyConverter:
 
 class Filter:
     def __init__(self):
-        self.options = {}
+        self.options = ['currency', 'minimum', 'maximum']
 
-    def add_options(self, minimum, maximum, currency):
-        self.options['minimum'] = minimum
-        self.options['maximum'] = maximum
-        self.options['currency'] = None if currency == 'default' else currency
-
-    def filter_currency(self, records):
+    @staticmethod
+    def filter_currency(records, currency):
         """Find the currencies from currency table in CurrencyConverter class.
         Convert currencies."""
-        currency = self.options['currency']
         if currency:
             for record in records['product']:
                 currency_converter = CurrencyConverter(record['price_cur'], currency)
@@ -31,9 +26,8 @@ class Filter:
                 record['price_cur'] = currency
         return records
 
-    def filter_price(self, records):
-        minimum = self.options['minimum']
-        maximum = self.options['maximum']
+    @staticmethod
+    def filter_price(records, minimum, maximum):
         if minimum is None:
             records['product'] = list(filter(lambda elem: maximum >= elem['price_val'], records['product']))
         elif maximum is None:
@@ -46,13 +40,10 @@ class Filter:
 class Sorter:
     """Sort the products in ascending or descending order of price."""
     def __init__(self):
-        self.options = {}
+        self.options = ['sorting']
 
-    def add_options(self, sorting):
-        self.options['sorting'] = None if sorting == 'default' else sorting
-
-    def sort(self, records):
-        sorting = self.options['sorting']
+    @staticmethod
+    def sort(records, sorting):
         if sorting == 'ascending':
             records['product'] = sorted(records['product'], key=lambda price: price['price_val'])
         elif sorting == 'descending':
