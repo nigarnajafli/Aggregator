@@ -2,6 +2,7 @@ import abc
 from .driver import Driver
 driver = Driver()
 
+
 class Scraper(metaclass=abc.ABCMeta):
 	""" Initialize the values to be inherited in TapazScraper, AliExpressScraper, and AmazonScraper."""
 	def __init__(self, timeout=0.4):

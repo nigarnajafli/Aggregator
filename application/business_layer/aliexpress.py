@@ -4,6 +4,7 @@ from .scraper import Scraper
 from .json_parser import Parser
 parser = Parser('values.json')
 
+
 class AliExpressScraper(Scraper):
     # Inherits from scraper.
     def extract_record(self):

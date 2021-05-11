@@ -24,7 +24,6 @@ class Collector:
         self.aliexpress = aliexpress
         self.handler = handler
 
-
     def get_data(self):
         """ Implement all the options and get the results after handling(filtering and sorting) data."""
         for choice in self.choices:
@@ -36,5 +35,6 @@ class Collector:
                 site = self.aliexpress
             site.set_search_term(self.search_term)
             records = site.extract_record()
-            self.all_records[choice] = self.handler.handle_data(records, self.currency, self.minimum, self.maximum, self.sorting)
+            self.all_records[choice] = self.handler.handle_data(records, self.currency,
+                                                                self.minimum, self.maximum, self.sorting)
         return self.all_records

@@ -3,6 +3,7 @@ from .filter_and_sorter import Filter, Sorter
 filter_ = Filter()
 sorter = Sorter()
 
+
 class DataHandler:
     # Has an Aggregation relationship with Filter and Sorter classes.
     def __init__(self):

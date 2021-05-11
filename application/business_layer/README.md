@@ -1,5 +1,5 @@
 # Business Layer
-![alt text](uml.png)
+![alt text](./uml.PNG)
 
 ## The comments inside files describe the business processes and architecture.
 Amazon and Tap.az scrapers use Beautiful Soup for pulling data out of HTML files.

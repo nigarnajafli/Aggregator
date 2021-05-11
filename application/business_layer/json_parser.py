@@ -1,6 +1,7 @@
 import json
 import os
 
+
 class Parser:
     def __init__(self, json_file):
         file = open(os.path.abspath(json_file), 'r')
